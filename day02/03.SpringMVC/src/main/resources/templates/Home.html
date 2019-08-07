@@ -12,12 +12,13 @@
         <a th:href="@{/index?lang=en}">Language(English)</a>
         &nbsp;|&nbsp;
         <a th:href="@{/index?lang=id}">Bahasa(Indonesia)</a>
-
+        &nbsp;|&nbsp;
+		<a th:href="@{/index?lang=id}">India</a>
     </div>
 	<a href="add-student" th:text="#{lang.addstudent}">...</a>
 	
-	<!-- <p th:text="${#locale.language}"></p>
-	 -->
+	<p th:text="${#locale.language}"></p>
+	
 	<table border="1">
 		<tr>
 			<td th:text="#{lang.firstname}">...</td>

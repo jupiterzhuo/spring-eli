@@ -2,9 +2,6 @@ package id.equity.SpringMVC.Config;
 
 import java.util.Locale;
 
-import javax.websocket.Session;
-
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties.LocaleResolver;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

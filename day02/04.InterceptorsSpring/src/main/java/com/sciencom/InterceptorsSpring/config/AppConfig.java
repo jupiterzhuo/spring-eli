@@ -14,7 +14,7 @@ public class AppConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         //Apply All URL
         registry.addInterceptor(new LogInterceptor());
-
+        	
         registry.addInterceptor(new OldPageInterceptor())
                 .addPathPatterns("/old-page");
 
