@@ -1,0 +1,30 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Bank Account</title>
+</head>
+<body>
+    <th:block th:include="/_menu"></th:block>
+
+    <h2>Accounts</h2>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Balance</th>
+        </tr>
+        <tr th:each="accountInfo : ${bankAccountList}">
+            <td th:utext="${accountInfo.id}">..</td>
+            <td th:with="lastname = ${accountInfo.lastName!=null?accountInfo.lastName:' '}"
+                th:utext="${accountInfo.firstName + ' ' + lastname} ">..</td>
+            <td>$ &nbsp;<span th:text="${#numbers.formatDecimal(accountInfo.balance, 0, 'COMMA', 2, 'POINT')}">10.00</span></td>
+
+        </tr>
+
+    </table>
+</body>
+</html>
