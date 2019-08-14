@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import id.equity.RestExample.configs.Auditable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,18 +37,19 @@ public class Student extends Auditable<String>  {
 	private String name;
 	private int age;
 	
+	@JsonIgnore
 	//Relasi One To One
 	@OneToOne(cascade = CascadeType.ALL,
 			fetch = FetchType.LAZY,
 			mappedBy = "student" )
 	private Contact contact;
-	
+	@JsonIgnore
 	//Relasi One to Many
 	@OneToMany(cascade = CascadeType.ALL, 
 			fetch = FetchType.LAZY,
 			mappedBy = "student")
 	private List<Assignment> Assigments;
-	
+	@JsonIgnore
 	//Relasi many to many
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(

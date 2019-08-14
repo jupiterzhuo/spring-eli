@@ -27,8 +27,8 @@ public class StudentController {
 	@Autowired
 	private StudentRepository studentRepository;
 	//Get All
-	//@RequestMapping(value= {"students"}, method = RequestMethod.GET)
-	@GetMapping("students")
+	@RequestMapping(value= {"students"}, method = RequestMethod.GET)
+	//@GetMapping("students")
 	public List<Student> getAllStudent() {
 		return (List<Student>) studentRepository.findAll();
 		//return "Get All Student";
@@ -48,6 +48,7 @@ public class StudentController {
 	}
 	//Save
 	@PostMapping("students")
+	//@RequestMapping(value= {"students"}, method = RequestMethod.POST)
 	public Student addNewStudent(@Valid@RequestBody Student student) {
 		return studentRepository.save(student);
 	}
