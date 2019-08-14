@@ -16,7 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
+import id.equity.RestExample.configs.Auditable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,11 +26,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "tbl_student")
-public class Student {
+public class Student extends Auditable<String>  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(nullable = false, length = 100)
+	@NotEmpty(message = "Name not Empty")
 	private String name;
 	private int age;
 	
