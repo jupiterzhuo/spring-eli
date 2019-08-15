@@ -85,6 +85,7 @@ public class UserService {
 		//add
 		if (action ==1) {
 			user = this.saveUser(createUserDTO, null);
+			newUserId=user.getId();
 		}
 		//edit
 		else {
