@@ -26,7 +26,7 @@ public class Role {
 	private Long id;
 	
     @NotNull(message = "Name not empty")
-    @NotEmpty
+    @NotEmpty(message = "nama Tidak boleh kosong")
     @Size(max = 100,message = "Name length is 100")
     @Column(name = "role_name",length = 100)
 	private String name;

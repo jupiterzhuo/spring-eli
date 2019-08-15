@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import id.equity.RestExample.Repository.RoleRepository;
 import id.equity.RestExample.dto.role.CreateRoleDTO;
 import id.equity.RestExample.dto.role.ListRoleDTO;
+import id.equity.RestExample.exceptions.EntityNotFoundException;
 import id.equity.RestExample.exceptions.GenericErrorException;
 import id.equity.RestExample.models.Role;
 
@@ -45,9 +46,10 @@ public class RoleController {
 	
 	//Get by Id
 	@GetMapping("roles/{id}")
-	public ResponseEntity<ListRoleDTO> getRoleById(@PathVariable Long id){
+	public ResponseEntity<ListRoleDTO> getRoleById(@PathVariable Long id) 
+			throws EntityNotFoundException{
 		Role role = roleRepository.findById(id)
-				.orElseThrow(()-> new GenericErrorException("Roles Not Found"));
+				.orElseThrow(()-> new EntityNotFoundException(Role.class,"id",id.toString()));
 		return ResponseEntity.ok(modelMapper.map(role, ListRoleDTO.class));
 
 	}
@@ -63,9 +65,9 @@ public class RoleController {
 	//Edit
 	@PutMapping("/roles/{id}")
 	public ResponseEntity<CreateRoleDTO> updateRole(@PathVariable Long id,
-			@Valid @RequestBody CreateRoleDTO updatedRoles){
+			@Valid @RequestBody CreateRoleDTO updatedRoles) throws EntityNotFoundException {
 		roleRepository.findById(id)
-			.orElseThrow(()->new GenericErrorException("Role Not found"));
+			.orElseThrow(()->new EntityNotFoundException(Role.class, "id",id.toString()));
 		Role role = modelMapper.map(updatedRoles,Role.class);
 		role.setId(id);
 		roleRepository.save(role);
