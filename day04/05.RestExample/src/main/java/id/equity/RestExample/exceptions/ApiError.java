@@ -26,7 +26,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.CUSTOM, property = "error", visible = true)
 @JsonTypeIdResolver(LowerCaseClassNameResolver.class)
-
+@AllArgsConstructor
 public class ApiError {
 	
 	 private HttpStatus httpStatus;

@@ -1,11 +1,12 @@
 package id.equity.RestExample.dto.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Data
-@NoArgsConstructor
+@AllArgsConstructor
 public abstract class UserDTO {
 	private String firstName;
 	private String lastName;

@@ -26,6 +26,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+
 @Entity
 @Table(name = "tbl_student")
 public class Student extends Auditable<String>  {
@@ -56,5 +57,18 @@ public class Student extends Auditable<String>  {
 			inverseJoinColumns = @JoinColumn(name="subject_id",referencedColumnName = "id")
 			)
 	private List<Subject> subjects;
+	
+	public Student(Long id, @NotEmpty(message = "Name not Empty") String name, int age, Contact contact,
+			List<Assignment> assigments, List<Subject> subjects) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.contact = contact;
+		Assigments = assigments;
+		this.subjects = subjects;
+	}
+	
+	
 
 }
