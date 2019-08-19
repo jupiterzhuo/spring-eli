@@ -8,6 +8,9 @@ import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,9 +40,10 @@ public class RoleController {
 	
 	//Get All 
 	@GetMapping("roles")
-	public ResponseEntity<List<ListRoleDTO>> getAllRole(){
-		List<Role> lstRole = (List<Role>) roleRepository.findAll();
-		Type targetType = new TypeToken<List<ListRoleDTO>>() {}.getType();
+	public ResponseEntity<Page<ListRoleDTO>> getAllRole(){
+		Pageable pageable = PageRequest.of(0, 2);
+		Page<Role> lstRole =  roleRepository.findAll(pageable);
+		Type targetType = new TypeToken<Page<ListRoleDTO>>() {}.getType();
 		return ResponseEntity.ok(modelMapper.map(lstRole, targetType));
 		
 	}
