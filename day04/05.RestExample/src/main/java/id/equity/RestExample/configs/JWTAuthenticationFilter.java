@@ -22,6 +22,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import id.equity.RestExample.dto.user.LoginDTO;
+import io.swagger.models.Response;
 
 
 
@@ -62,8 +63,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.withSubject(((User) authResult.getPrincipal()).getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis()+ SecurityConstants.EXPIRED_TIME ))
                 .sign(Algorithm.HMAC512(SecurityConstants.SECRET.getBytes()));
-		response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
-		
+		//Responde Header
+		//response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
+		//Body 
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		 response.getWriter().write(
+	                "{\"" + SecurityConstants.HEADER_STRING + "\":\"" + SecurityConstants.TOKEN_PREFIX+ token + "\"}"
+	        );
 	}
 	
 	
