@@ -24,7 +24,7 @@ export class StudentService {
   updateStudent(student: StudentModel) {
   return this.http.put<StudentModel>(apiUrl, student);
   }
-  deleteStudent(studentId:number) {
+  deleteStudent(studentId:any) {
     return this.http.delete<StudentModel>(apiUrl, studentId);
     }
 }

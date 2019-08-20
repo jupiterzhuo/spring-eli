@@ -1,8 +1,8 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 import { StudentComponent } from './student/student.component';
 import { RegisterComponent } from './register/register.component';
 import { StudentAddComponent } from './student-add/student-add.component'
