@@ -41,9 +41,11 @@ public class RoleController {
 	
 	//Get All 
 	@GetMapping("roles")
-	public ResponseEntity<Page<ListRoleDTO>> getAllRole(@RequestParam(name = "page") int page){
+	public ResponseEntity<Page<ListRoleDTO>> getAllRole(
+			@RequestParam(name = "page") int page,
+			@RequestParam(name="size") int size){
 		
-		Pageable pageable = PageRequest.of(page,3);
+		Pageable pageable = PageRequest.of(page,size);
 		Page<Role> lstRole =  roleRepository.findAll(pageable);
 		Type targetType = new TypeToken<Page<ListRoleDTO>>() {}.getType();
 		return ResponseEntity.ok(modelMapper.map(lstRole, targetType));

@@ -16,6 +16,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -47,6 +49,7 @@ public class User {
 	@Column(name = "password",length = 100)
 	private String password;
 	
+	@JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tbl_users_roles",
     		joinColumns = @JoinColumn(name="user_id",referencedColumnName = "id"),

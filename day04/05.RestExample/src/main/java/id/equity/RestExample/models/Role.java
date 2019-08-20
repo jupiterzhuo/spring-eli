@@ -13,6 +13,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -32,6 +34,7 @@ public class Role {
 	private String name;
     
     @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     private List<User> users;
     
 

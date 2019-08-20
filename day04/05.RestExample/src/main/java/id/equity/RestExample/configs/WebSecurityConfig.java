@@ -30,16 +30,17 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter{
 		.authorizeRequests()
 		.antMatchers(HttpMethod.POST,"/api/v1/roles").permitAll()
 		.antMatchers(HttpMethod.GET,"/api/v1/roles").permitAll()
+		.antMatchers(HttpMethod.POST,"/api/v1/users").permitAll()
+		//Exclude Swagger 
+		.antMatchers(
+                HttpMethod.GET,
+                "/v2/api-docs",
+                "/swagger-resources/**",
+                "/swagger-ui.html**",
+                "/webjars/**",
+                "favicon.ico").permitAll()
 		.anyRequest().authenticated();
 		//.anyRequest().permitAll();
-//		//Exclude Swagger 
-//		.antMatchers(
-//                HttpMethod.GET,
-//                "/v2/api-docs",
-//                "/swagger-resources/**",
-//                "/swagger-ui.html**",
-//                "/webjars/**",
-//                "favicon.ico").permitAll()
 //		//Exclude Register user
 //		.antMatchers(HttpMethod.POST,"/api/v1/users").permitAll()
 //		.anyRequest()
