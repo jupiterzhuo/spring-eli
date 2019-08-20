@@ -1,5 +1,6 @@
 package id.equity.RestExample.configs;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -12,11 +13,20 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import id.equity.RestExample.services.AuthService;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig  extends WebSecurityConfigurerAdapter{
-
+	
+	@Autowired
+	private AuthService autService;
+	
+	@Autowired
+	private PasswordEncoder password;
+	
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -28,8 +38,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter{
 		http.cors().and()
 		.csrf().disable()
 		.authorizeRequests()
-		.antMatchers(HttpMethod.POST,"/api/v1/roles").permitAll()
-		.antMatchers(HttpMethod.GET,"/api/v1/roles").permitAll()
+		
 		.antMatchers(HttpMethod.POST,"/api/v1/users").permitAll()
 		//Exclude Swagger 
 		.antMatchers(
@@ -39,22 +48,20 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter{
                 "/swagger-ui.html**",
                 "/webjars/**",
                 "favicon.ico").permitAll()
-		.anyRequest().authenticated();
+		.anyRequest().authenticated().and()
 		//.anyRequest().permitAll();
-//		//Exclude Register user
-//		.antMatchers(HttpMethod.POST,"/api/v1/users").permitAll()
-//		.anyRequest()
-//		.authenticated().and()
-//		//.addFilter(new JWTAuthenticationFilter(authenticationManager()))
-//		//.addFilter(new JWTAuthorizationFilter(authenticationManager()))
-//		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+		.addFilter(new JWTAuthenticationFilter(authenticationManager()))
+		.addFilter(new JWTAuthorizationFilter(authenticationManager()))
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	
 	}
 
-//	@Override
-//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		//Get Username and password From DB
-//	}
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		//Get Username and password From DB
+		auth.userDetailsService(autService).passwordEncoder(password);
+	}
 
 	
 	

@@ -26,7 +26,7 @@ import id.equity.RestExample.models.User;
 
 @Service
 @Transactional
-public class UserService {
+public class UserService{
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -97,4 +97,6 @@ public class UserService {
 			
 		}
 	}
+	
+	
 }
