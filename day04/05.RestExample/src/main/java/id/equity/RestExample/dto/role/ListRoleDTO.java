@@ -19,14 +19,6 @@ public class ListRoleDTO extends RoleDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	
-	@Builder
-	public ListRoleDTO(String name, Long id) {
-		super(name);
-		this.id = id;
-	}
-	
-	
-	
 	
 	
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.equity.RestExample.Repository.RoleRepository;
@@ -40,8 +41,9 @@ public class RoleController {
 	
 	//Get All 
 	@GetMapping("roles")
-	public ResponseEntity<Page<ListRoleDTO>> getAllRole(){
-		Pageable pageable = PageRequest.of(0, 2);
+	public ResponseEntity<Page<ListRoleDTO>> getAllRole(@RequestParam(name = "page") int page){
+		
+		Pageable pageable = PageRequest.of(page,3);
 		Page<Role> lstRole =  roleRepository.findAll(pageable);
 		Type targetType = new TypeToken<Page<ListRoleDTO>>() {}.getType();
 		return ResponseEntity.ok(modelMapper.map(lstRole, targetType));

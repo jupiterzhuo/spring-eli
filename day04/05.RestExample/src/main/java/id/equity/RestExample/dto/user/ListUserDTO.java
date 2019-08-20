@@ -1,5 +1,7 @@
 package id.equity.RestExample.dto.user;
 
+import java.io.Serializable;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,14 +9,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ListUserDTO extends UserDTO {
+@NoArgsConstructor
+public class ListUserDTO extends UserDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;
 
-	@Builder
-	public ListUserDTO(String firstName, String lastName, String userName, String email, Long id) {
-		super(firstName, lastName, userName, email);
-		this.id = id;
-	}
 	
 	
 }

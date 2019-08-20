@@ -1,26 +1,20 @@
 package id.equity.RestExample.dto.user;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateUserDTO extends UserDTO {
+@NoArgsConstructor
+public class CreateUserDTO extends UserDTO implements Serializable {
 
-
-	private String passsword;
+	private static final long serialVersionUID = 1L;
+	private String password;
 	private List<RoleUserDTO> roleId;
-
-	@Builder
-	public CreateUserDTO(String firstName, String lastName, String userName, String email, String passsword,
-			List<RoleUserDTO> roleId) {
-		super(firstName, lastName, userName, email);
-		this.passsword = passsword;
-		this.roleId = roleId;
-	}
-	
 	
 }

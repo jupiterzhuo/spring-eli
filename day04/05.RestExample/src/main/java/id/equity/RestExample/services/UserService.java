@@ -49,7 +49,7 @@ public class UserService {
 		user.setUserName(createUserDTO.getUserName());
 		user.setFirstName(createUserDTO.getFirstName());
 		user.setLastName(createUserDTO.getLastName());
-		user.setPassword(passwordEncoder.encode(createUserDTO.getPasssword()));
+		user.setPassword(passwordEncoder.encode(createUserDTO.getPassword()));
 		return userRepository.save(user);
 		
 	}

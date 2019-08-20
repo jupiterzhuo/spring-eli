@@ -1,13 +1,14 @@
 package id.equity.RestExample.dto.role;
 
-import lombok.Builder;
+
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @NoArgsConstructor
+@Getter
+@Setter
 public class CreateRoleDTO extends RoleDTO {
-	@Builder
-	public CreateRoleDTO(String name) {
-		super(name);
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 }
